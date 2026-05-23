@@ -1,35 +1,86 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const items = [
-  { key: "страх", hint: "что я слышу внутри" },
-  { key: "наблюдение", hint: "что я замечаю без борьбы" },
-  { key: "действие", hint: "какой маленький шаг выбираю" },
-  { key: "запись", hint: "что фиксирую в дневнике" },
-  { key: "карта", hint: "что собирается в конце" }
+  {
+    key: "страх",
+    hint: "что я слышу внутри",
+    backText:
+      "Не спорим со страхом сразу. Сначала замечаем, какие старые денежные фразы до сих пор звучат внутри."
+  },
+  {
+    key: "наблюдение",
+    hint: "что я замечаю без борьбы",
+    backText:
+      "Наблюдение помогает увидеть внутренний механизм без давления и отличить свой голос от чужого."
+  },
+  {
+    key: "действие",
+    hint: "какой маленький шаг выбираю",
+    backText:
+      "Один небольшой шаг двигает дальше большого обещания. Маршрут строится без героизма, но честно."
+  },
+  {
+    key: "запись",
+    hint: "что фиксирую в дневнике",
+    backText:
+      "Когда мысль записана, она перестаёт быть фоном. Дневник собирает разрозненные открытия в ясные слова."
+  },
+  {
+    key: "карта",
+    hint: "что собирается в конце",
+    backText:
+      "Из ответов, состояний и маленьких действий постепенно складывается личная карта денег внутри."
+  }
 ];
 
 export function InfographicPath() {
+  const [flippedKey, setFlippedKey] = useState<string | null>(null);
+
   return (
-    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {items.map((item, index) => (
-        <motion.div
+        <motion.button
           key={item.key}
           whileHover={{ y: -4, scale: 1.01 }}
-          className="group min-h-[260px] rounded-[28px] border border-navy/15 bg-card/80 px-6 py-7 shadow-soft transition"
+          type="button"
+          onClick={() =>
+            setFlippedKey((current) => (current === item.key ? null : item.key))
+          }
+          className="group relative min-h-[290px] rounded-[28px] text-left [perspective:1200px]"
         >
-          <div className="mb-4 flex items-center justify-between text-xs uppercase tracking-[0.28em] text-navy/50">
-            <span>{String(index + 1).padStart(2, "0")}</span>
-            <span>→</span>
+          <div
+            className={`relative min-h-[290px] rounded-[28px] transition duration-500 [transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)] ${
+              flippedKey === item.key ? "[transform:rotateY(180deg)]" : ""
+            }`}
+          >
+            <div className="absolute inset-0 rounded-[28px] border border-navy/15 bg-card/80 px-6 py-7 shadow-soft [backface-visibility:hidden]">
+              <div className="mb-4 flex items-center justify-between text-xs uppercase tracking-[0.28em] text-navy/50">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <span>→</span>
+              </div>
+              <h3 className="mb-4 text-[1.3rem] font-black uppercase leading-[0.95] tracking-[-0.04em] sm:text-[1.42rem] xl:text-[1.55rem]">
+                {item.key}
+              </h3>
+              <p className="max-w-[15ch] text-[15px] leading-8 text-navy/70 sm:max-w-[16ch]">
+                {item.hint}
+              </p>
+            </div>
+
+            <div className="absolute inset-0 rounded-[28px] border border-navy/15 bg-ink px-6 py-7 text-milk shadow-soft [backface-visibility:hidden] [transform:rotateY(180deg)]">
+              <div className="mb-4 flex items-center justify-between text-xs uppercase tracking-[0.28em] text-accent/80">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <span>слой</span>
+              </div>
+              <h3 className="mb-4 text-[1.1rem] font-black uppercase leading-[1] tracking-[-0.03em] text-accent sm:text-[1.2rem]">
+                {item.key}
+              </h3>
+              <p className="text-sm leading-7 text-milk/82">{item.backText}</p>
+            </div>
           </div>
-          <h3 className="mb-4 max-w-[8ch] text-[1.7rem] font-black uppercase leading-[0.9] tracking-[-0.04em] [overflow-wrap:anywhere]">
-            {item.key}
-          </h3>
-          <p className="max-w-[12ch] text-base leading-8 text-navy/70">
-            {item.hint}
-          </p>
-        </motion.div>
+        </motion.button>
       ))}
     </div>
   );
