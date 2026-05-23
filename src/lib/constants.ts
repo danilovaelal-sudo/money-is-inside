@@ -1,6 +1,6 @@
 export const STORAGE_KEY = "money-inside-progress";
 
-export const LITRES_BOOK_URL = "PASTE_LITRES_URL_HERE";
+export const LITRES_BOOK_URL = "https://www.litres.ru/73919646/";
 
 export const EMOTIONAL_STATES = [
   "яснее",
