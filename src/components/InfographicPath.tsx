@@ -40,7 +40,7 @@ export function InfographicPath() {
   const [flippedKey, setFlippedKey] = useState<string | null>(null);
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:flex xl:flex-wrap xl:gap-5">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 xl:gap-6">
       {items.map((item, index) => (
         <motion.button
           key={item.key}
@@ -49,10 +49,10 @@ export function InfographicPath() {
           onClick={() =>
             setFlippedKey((current) => (current === item.key ? null : item.key))
           }
-          className="group relative min-h-[290px] rounded-[28px] text-left [perspective:1200px] xl:min-h-[360px] xl:w-[186px] xl:flex-none"
+          className="group relative min-h-[290px] rounded-[28px] text-left [perspective:1200px] xl:min-h-[380px]"
         >
           <div
-            className={`relative min-h-[290px] rounded-[28px] transition duration-500 [transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)] xl:min-h-[360px] ${
+            className={`relative min-h-[290px] rounded-[28px] transition duration-500 [transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)] xl:min-h-[380px] ${
               flippedKey === item.key ? "[transform:rotateY(180deg)]" : ""
             }`}
           >
@@ -61,10 +61,10 @@ export function InfographicPath() {
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <span>→</span>
               </div>
-              <h3 className="mb-4 text-[1.3rem] font-black uppercase leading-[0.95] tracking-[-0.04em] sm:text-[1.42rem] xl:text-[1.82rem]">
+              <h3 className="mb-4 text-[1.3rem] font-black uppercase leading-[0.95] tracking-[-0.04em] sm:text-[1.42rem] xl:text-[1.6rem]">
                 {item.key}
               </h3>
-              <p className="max-w-[15ch] text-[15px] leading-8 text-navy/70 sm:max-w-[16ch] xl:max-w-[14ch] xl:text-[1.1rem] xl:leading-9">
+              <p className="max-w-[15ch] text-[15px] leading-8 text-navy/70 sm:max-w-[16ch] xl:max-w-[13ch] xl:text-[1rem] xl:leading-8">
                 {item.hint}
               </p>
             </div>
@@ -74,10 +74,10 @@ export function InfographicPath() {
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <span>слой</span>
               </div>
-              <h3 className="mb-4 text-[1.1rem] font-black uppercase leading-[1] tracking-[-0.03em] text-accent sm:text-[1.2rem] xl:text-[1.38rem]">
+              <h3 className="mb-4 text-[1.1rem] font-black uppercase leading-[1] tracking-[-0.03em] text-accent sm:text-[1.2rem] xl:text-[1.25rem]">
                 {item.key}
               </h3>
-              <p className="text-sm leading-7 text-milk/82 xl:text-[15px] xl:leading-7">
+              <p className="text-sm leading-7 text-milk/82 xl:text-[14px] xl:leading-6">
                 {item.backText}
               </p>
             </div>

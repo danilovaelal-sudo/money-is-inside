@@ -67,16 +67,23 @@ export default function HomePage() {
 
       <MarqueeLine text={heroMarquee} />
 
-      <ScrollReveal className="grid gap-8 md:grid-cols-[1fr_1.1fr]">
-        <div>
-          <h2 className="whitespace-pre-line text-5xl font-black uppercase leading-[0.88] tracking-[-0.05em] md:text-7xl">
-            {"ЭТО НЕ ПРО\nБЫСТРЫЕ ДЕНЬГИ"}
-          </h2>
+      <ScrollReveal className="space-y-8">
+        <div className="grid gap-8 md:grid-cols-[1fr_1.1fr]">
+          <div>
+            <h2 className="whitespace-pre-line text-5xl font-black uppercase leading-[0.88] tracking-[-0.05em] md:text-7xl">
+              {"ЭТО НЕ ПРО\nБЫСТРЫЕ ДЕНЬГИ"}
+            </h2>
+          </div>
+          <div className="space-y-6">
+            <p className="max-w-4xl text-lg leading-8 text-navy/75">
+              Это путь, где человек день за днём смотрит на свои денежные страхи,
+              установки, стыд, тело, желание, творчество и право занимать место.
+            </p>
+          </div>
         </div>
-        <div className="space-y-6">
-          <p className="max-w-2xl text-lg leading-8 text-navy/75">
-            Это путь, где человек день за днём смотрит на свои денежные страхи,
-            установки, стыд, тело, желание, творчество и право занимать место.
+        <div>
+          <p className="mb-5 text-xs uppercase tracking-[0.32em] text-accent">
+            Пять точек маршрута
           </p>
           <InfographicPath />
         </div>
